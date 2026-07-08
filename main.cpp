@@ -15,13 +15,14 @@ struct Doboz
     void kiirDobozok(const Doboz* tomb, unsigned meret)
     {
         // tomb[0].nev = "at-irtam-a-tomb-elso-elemet";
+        cout << "[A dobozok adatai:]" << endl;
+
         for (unsigned i = 0; i < meret; i++)
         {
             cout << tomb[i].nev << ": ";
             cout << tomb[i].szelesseg << "x";
             cout << tomb[i].magassag << "x";
             cout << tomb[i].hosszusag << endl;
-
         }
     }
 
@@ -53,7 +54,7 @@ struct Doboz
     }
 
     // A Doboz tomb-re referencia ként kell hivatkozni, egyébként csak egy másolat lenne
-    // Hasonló képpen a meret változoót is referencia ként kell átadni.
+    // Hasonló képpen a meret változót is referencia ként kell átadni.
     void tombMeretMegnovel(Doboz* &tomb, unsigned &meret, unsigned megnovel)
     {
         // Lefoglalok egy új tömböt a megfelelő nagyobb mérettel.
@@ -69,6 +70,38 @@ struct Doboz
         tomb = ujtomb;
         meret += megnovel;
     }
+
+    bool belefer(const Doboz& d1, const Doboz& d2)
+    {
+        if (d1.szelesseg <= d2.szelesseg &&
+            d1.magassag <= d2.magassag &&
+            d1.hosszusag <= d2.hosszusag)
+        {
+            return true;
+        }
+        else if (d1.szelesseg >= d2.szelesseg &&
+            d1.magassag >= d2.magassag &&
+            d1.hosszusag >= d2.hosszusag)
+        {
+            return true;
+        }
+        else return false;
+    }
+
+    bool belefer(const Doboz& d, unsigned szelesseg, unsigned magassag, unsigned hosszusag)
+    {
+        return d.szelesseg <= szelesseg &&
+            d.magassag <= magassag &&
+            d.hosszusag <= hosszusag;
+    }
+
+    void elforgat(Doboz& d)
+    {
+        unsigned temp = d.szelesseg;
+        d.szelesseg = d.magassag;
+        d.magassag = d.hosszusag;
+        d.hosszusag = temp;
+    }
 }
 
 using namespace doboz;
@@ -83,23 +116,34 @@ int main()
 
     for (unsigned i = 0; i < meret; i++)
     {
-        cout << i << ". doboz adatai [Nev, Szelesseg, Hosszusag, Magassag]: " << endl;
+        cout << i+1 << ". doboz adatai [Nev, Szelesseg, Hosszusag, Magassag]: " << endl;
         cin >> tomb[i].nev >> tomb[i].szelesseg >> tomb[i].magassag >> tomb[i].hosszusag;
     }
 
     cout << endl;
 
     kiirDobozok(tomb, meret);
-
     cout << endl;
 
     for (unsigned i = 0; i < meret; i++)
         kiirFelszinTerfogat(tomb[i]);
 
     unsigned novel;
-
+    cout << endl << "Mennyi dobozzal noveljuk?: ";
     cin >> novel;
     tombMeretMegnovel(tomb, meret, novel);
+    for (unsigned i = meret - novel; i < meret; i++)
+    {
+        cout << i+1 << ". doboz adatai [Nev, Szelesseg, Hosszusag, Magassag]: " << endl;
+        cin >> tomb[i].nev >> tomb[i].szelesseg >> tomb[i].magassag >> tomb[i].hosszusag;
+    }
+    cout << endl;
+
+    kiirDobozok(tomb, meret);
+    cout << endl;
+
+    for (unsigned i = 0; i < meret; i++)
+        kiirFelszinTerfogat(tomb[i]);
 
     delete[] tomb;
     // dinamikusan lefoglalt tömb felszabadítása.
