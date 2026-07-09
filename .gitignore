@@ -1,0 +1,33 @@
+# Futtatható és fordított fájlok
+*.exe
+*.out
+*.o
+*.obj
+*.dll
+*.a
+*.lib
+
+# Build és kimeneti mappák
+build/
+bin/
+obj/
+
+# VS Code
+.vscode/
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.db
+*.idb
+*.pdb
+
+# CLion (Jetbrain)
+.idea/
+cmake-build-*/
+
+# Code::Blocks
+*.layout
+*.depend
+
