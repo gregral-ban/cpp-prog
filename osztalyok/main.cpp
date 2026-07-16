@@ -57,6 +57,18 @@ namespace Tarolo
             {
                 return meret;
             }
+
+            void ertekBeallit(unsigned index, double ertek)
+            {
+                if (index < meret)
+                    tomb[index] = ertek;
+            }
+
+            double ertekLeker(unsigned index)
+            {
+                if(index < meret)
+                    return tomb[index];
+            }
     };
 
     // unsigned darabLeker(Szamok &s)
