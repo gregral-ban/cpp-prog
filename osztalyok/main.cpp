@@ -55,7 +55,7 @@ namespace Tarolo
                 delete[] tomb;
             }
 
-            unsigned darabLeker()
+            unsigned darabLeker() const
             {
                 return meret;
             }
@@ -66,7 +66,7 @@ namespace Tarolo
                     tomb[index] = ertek;
             }
 
-            double ertekLeker(unsigned index)
+            double ertekLeker(unsigned index) const
             {
                 if(index < meret)
                     return tomb[index];
@@ -79,6 +79,17 @@ namespace Tarolo
     // {
     //     //..
     // }
+}
+
+void kiir(const Tarolo::Szamok &szamok)
+{
+    for (unsigned i = 0; i < szamok.darabLeker(); i++)
+    {
+        if(i >0)
+            std::cout << ", ";
+        std::cout << szamok.ertekLeker(i);
+    }
+    std::cout << std::endl;
 }
 
 int main()
@@ -95,17 +106,12 @@ int main()
     // Tarolo::Szamok* p = new Tarolo::Szamok(10);
     // delete *p;
 
-    s1.ertekBeallit(3, 890.9);
-    s2.ertekBeallit(30, 9.9);
-
-    for (unsigned i = 0; i < s1.darabLeker(); i++)
-        std::cout << s1.ertekLeker(i) << " ";
-    std::cout << std::endl;
-    for (unsigned i = 0; i < s2.darabLeker(); i++)
-        std::cout << s2.ertekLeker(i) << " ";
-    std::cout << std::endl;
-
-    std::cout << s2.ertekLeker(15) << std::endl;
+    // s1.ertekBeallit(3, 890.9);
+    // s2.ertekBeallit(30, 9.9);
+    // std::cout << s2.ertekLeker(15) << std::endl;
     
+    kiir(s1);
+    kiir(s2);
+
     return 0;
 }
