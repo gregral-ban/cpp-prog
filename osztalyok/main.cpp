@@ -1,95 +1,96 @@
 #include <iostream>
+#include "Szamok.h"
 
-namespace Tarolo
-{
-    /* A struct és a class közötti különbség annyi,
-     * hogy a struct alapértlemezetten 'public'-ként kezeli ami belekerül,
-     * a class pedig alapértelmezetten 'private' minden ami belekerül.
-    */
-    // struct Szamok
-    class Szamok
-    {
-        double* tomb = nullptr;
+// namespace Tarolo
+// {
+//     /* A struct és a class közötti különbség annyi,
+//      * hogy a struct alapértlemezetten 'public'-ként kezeli ami belekerül,
+//      * a class pedig alapértelmezetten 'private' minden ami belekerül.
+//     */
+//     // struct Szamok
+//     class Szamok
+//     {
+//         double* tomb = nullptr;
 
-        /*
-        *private:
-        //...
-        public:
-        //...
-        */
-        /* Ezek az adattagok bizosítják a hozzáférést.
-        * Az osztályoknak nem csak adattagjaik vannak hanem metódusaik
-        * Tagfüggvényeik is. Osztályon belül lehet függvényt(METÓDUS-t) írni.
-        * Ezek bizostítják a publikus interfészt. Amin keresztül a külső kód
-        * tudja használi az osztálynak a belső adatait. De csak olyan kontrollált módon,
-        * ahogyan azt az osztály megengedi, tehát nem akárhogy.
-        *
-        * Ezeket akár lehet priváttá tenni,
-        */
-        unsigned meret = 0;
+//         /*
+//         *private:
+//         //...
+//         public:
+//         //...
+//         */
+//         /* Ezek az adattagok bizosítják a hozzáférést.
+//         * Az osztályoknak nem csak adattagjaik vannak hanem metódusaik
+//         * Tagfüggvényeik is. Osztályon belül lehet függvényt(METÓDUS-t) írni.
+//         * Ezek bizostítják a publikus interfészt. Amin keresztül a külső kód
+//         * tudja használi az osztálynak a belső adatait. De csak olyan kontrollált módon,
+//         * ahogyan azt az osztály megengedi, tehát nem akárhogy.
+//         *
+//         * Ezeket akár lehet priváttá tenni,
+//         */
+//         unsigned meret = 0;
 
-        public:
-            // Szamok()
-            // {
-            //     std::cout << ">> Konstruktor letrejon <<" << std::endl;
-            // }
+//         public:
+//             // Szamok()
+//             // {
+//             //     std::cout << ">> Konstruktor letrejon <<" << std::endl;
+//             // }
 
-            // Szamok(unsigned pmeret)
-            // {
-            //     meret = pmeret;
-            //     tomb = new double[meret];
-            // }
+//             // Szamok(unsigned pmeret)
+//             // {
+//             //     meret = pmeret;
+//             //     tomb = new double[meret];
+//             // }
 
-            Szamok(unsigned pmeret, double ertek = 0.0) :
-                meret(pmeret),
-                tomb(new double[pmeret])
-            {
-                for(unsigned i = 0; i < meret; i++)
-                    tomb[i] = ertek;
-            }
+//             Szamok(unsigned pmeret, double ertek = 0.0) :
+//                 meret(pmeret),
+//                 tomb(new double[pmeret])
+//             {
+//                 for(unsigned i = 0; i < meret; i++)
+//                     tomb[i] = ertek;
+//             }
        
-            // Szamok(const Szamok &masik) = delete;
-            Szamok(const Szamok& masik):
-                meret(masik.meret),
-                tomb(new double[meret])
-            {
-                for(unsigned i = 0; i < meret; i++)
-                    tomb[i] = masik.tomb[i];
-            }
+//             // Szamok(const Szamok &masik) = delete;
+//             Szamok(const Szamok& masik):
+//                 meret(masik.meret),
+//                 tomb(new double[meret])
+//             {
+//                 for(unsigned i = 0; i < meret; i++)
+//                     tomb[i] = masik.tomb[i];
+//             }
        
-            // Destruktor
-            // ~[Osztály neve]
-            // Paraméter nélküli függvény
-            ~Szamok()
-            {
-                delete[] tomb;
-            }
+//             // Destruktor
+//             // ~[Osztály neve]
+//             // Paraméter nélküli függvény
+//             ~Szamok()
+//             {
+//                 delete[] tomb;
+//             }
 
-            unsigned darabLeker() const
-            {
-                return meret;
-            }
+//             unsigned darabLeker() const
+//             {
+//                 return meret;
+//             }
 
-            void ertekBeallit(unsigned index, double ertek)
-            {
-                if (index < meret)
-                    tomb[index] = ertek;
-            }
+//             void ertekBeallit(unsigned index, double ertek)
+//             {
+//                 if (index < meret)
+//                     tomb[index] = ertek;
+//             }
 
-            double ertekLeker(unsigned index) const
-            {
-                if(index < meret)
-                    return tomb[index];
-                else
-                    return -1e8;
-            }
-    };
+//             double ertekLeker(unsigned index) const
+//             {
+//                 if(index < meret)
+//                     return tomb[index];
+//                 else
+//                     return -1e8;
+//             }
+//     };
 
-    // unsigned darabLeker(Szamok &s)
-    // {
-    //     //..
-    // }
-}
+//     // unsigned darabLeker(Szamok &s)
+//     // {
+//     //     //..
+//     // }
+// }
 
 void kiir(const Tarolo::Szamok &szamok)
 {
