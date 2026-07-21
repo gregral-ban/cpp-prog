@@ -47,6 +47,16 @@ namespace Tarolo
                 for(unsigned i = 0; i < meret; i++)
                     tomb[i] = ertek;
             }
+       
+            // Szamok(const Szamok &masik) = delete;
+            Szamok(const Szamok& masik):
+                meret(masik.meret),
+                tomb(new double[meret])
+            {
+                for(unsigned i = 0; i < meret; i++)
+                    tomb[i] = masik.tomb[i];
+            }
+       
             // Destruktor
             // ~[Osztály neve]
             // Paraméter nélküli függvény
@@ -112,6 +122,10 @@ int main()
     
     kiir(s1);
     kiir(s2);
+
+    Tarolo::Szamok masolat = s1; // valamelyik létező objektum másolata.
+    // Tarolo::Szamok masolat(s1);
+
 
     return 0;
 }
