@@ -11,7 +11,7 @@ namespace Tarolo
 
     Szamok::Szamok(const Szamok& masik) :
         meret(masik.meret),
-        tomb(new double[masik.meret])
+        tomb(new double[meret])
     {
         for(unsigned i = 0; i < meret; i++)
             tomb[i] = masik.tomb[i];

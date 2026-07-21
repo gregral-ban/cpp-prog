@@ -13,8 +13,8 @@ namespace Tarolo
 {
     class Szamok
     {
-        double* tomb = nullptr;
         unsigned meret = 0;
+        double* tomb = nullptr;
 
         public:
             Szamok(unsigned pmeret, double ertek = 0.0);
